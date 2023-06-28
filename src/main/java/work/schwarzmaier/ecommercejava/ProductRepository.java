@@ -28,4 +28,7 @@ public class ProductRepository {
     public void save(Product product){
         crudRepo.save(product);
     }
+    public void save(Iterable<Product> products){
+        crudRepo.saveAll(products);
+    }
 }

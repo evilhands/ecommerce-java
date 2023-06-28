@@ -5,6 +5,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
 
 @Component
 public class ProductSeeder implements CommandLineRunner {
@@ -20,6 +23,9 @@ public class ProductSeeder implements CommandLineRunner {
         product.setImagePath("path");
         product.setPrice(BigDecimal.valueOf(1));
 
-        productRepository.save(product);
+        List<Product> productList = new ArrayList<>();
+
+        IntStream.range(0,100).forEach(i -> productList.add(product.copy()));
+        productRepository.save(productList);
     }
 }

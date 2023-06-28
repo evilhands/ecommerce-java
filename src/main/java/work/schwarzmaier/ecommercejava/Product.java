@@ -53,4 +53,13 @@ public class Product {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
+
+    public Product copy(){
+        Product product = new Product();
+        product.setName(this.name);
+        product.setDescription(this.description);
+        product.setPrice(this.price);
+        product.setImagePath(this.imagePath);
+        return product;
+    }
 }
