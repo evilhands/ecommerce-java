@@ -1,6 +1,7 @@
 package work.schwarzmaier.ecommercejava.api.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import work.schwarzmaier.ecommercejava.api.contract.authentication.RegisterRequest;
@@ -24,7 +25,9 @@ public class AuthenticationController {
     }
 
     @GetMapping("register")
-    public AuthenticationResult register(RegisterRequest registerRequest){
-        return authenticationService.register(registerRequest.firstname(), registerRequest.lastname(), registerRequest.email(), registerRequest.password())/**/;
+    public AuthenticationResult register(@RequestBody RegisterRequest registerRequest){
+        // valid password and email
+        // not null field
+        return authenticationService.register(registerRequest.firstName(), registerRequest.lastName(), registerRequest.email(), registerRequest.password());
     }
 }
