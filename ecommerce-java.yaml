@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-java-deployment
+  labels:
+    app: ecommerce-java
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce-java
+  template:
+    metadata:
+      labels:
+        app: ecommerce-java
+    spec:
+      containers:
+        - name: ecommerce-java
+          image: ecommerce-java:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          # env:
+          #   - name: USER_NAME
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: mongo-secret
+          #         key: mongo-user
+          #   - name: USER_PWD
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: mongo-secret
+          #         key: mongo-password
+          #   - name: DB_URL
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: mongo-config
+          #         key: mongo-url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-java-service
+spec:
+  type: NodePort
+  selector:
+    app: ecommerce-java
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30100
