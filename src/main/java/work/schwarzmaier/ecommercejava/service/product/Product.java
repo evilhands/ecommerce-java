@@ -1,4 +1,4 @@
-package work.schwarzmaier.ecommercejava;
+package work.schwarzmaier.ecommercejava.service.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

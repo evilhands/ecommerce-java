@@ -1,4 +1,4 @@
-package work.schwarzmaier.ecommercejava;
+package work.schwarzmaier.ecommercejava.service.product;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
