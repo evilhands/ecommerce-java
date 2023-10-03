@@ -3,16 +3,18 @@ package work.schwarzmaier.ecommercejava.infrastructor.persistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import work.schwarzmaier.ecommercejava.service.common.interfaces.persistence.IProductRepository;
 import work.schwarzmaier.ecommercejava.service.product.Product;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-interface CrudRepo extends CrudRepository<Product,Long>{};
 
 @Repository
-public class ProductRepository {
+public class ProductRepository implements IProductRepository {
+
+    private interface CrudRepo extends CrudRepository<Product,Long>{};
 
     @Autowired
     private CrudRepo crudRepo;

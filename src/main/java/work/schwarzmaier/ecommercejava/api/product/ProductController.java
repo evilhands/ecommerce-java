@@ -4,7 +4,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import work.schwarzmaier.ecommercejava.infrastructor.persistence.ProductRepository;
+import work.schwarzmaier.ecommercejava.service.common.interfaces.persistence.IProductRepository;
 import work.schwarzmaier.ecommercejava.service.product.Product;
 
 import java.util.List;
@@ -13,9 +13,9 @@ import java.util.List;
 @RequestMapping("/products")
 class ProductController {
 
-    private final ProductRepository productRepository;
+    private final IProductRepository productRepository;
 
-    public ProductController(ProductRepository productRepository) {
+    public ProductController(IProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 

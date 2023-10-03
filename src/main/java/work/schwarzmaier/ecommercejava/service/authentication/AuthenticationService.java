@@ -1,7 +1,7 @@
 package work.schwarzmaier.ecommercejava.service.authentication;
 
 import org.springframework.stereotype.Service;
-import work.schwarzmaier.ecommercejava.service.common.authentication.IJwtGenerator;
+import work.schwarzmaier.ecommercejava.service.common.interfaces.authentication.IJwtGenerator;
 
 import java.util.Random;
 

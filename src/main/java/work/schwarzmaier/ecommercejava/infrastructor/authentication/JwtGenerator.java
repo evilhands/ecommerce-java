@@ -6,7 +6,7 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import work.schwarzmaier.ecommercejava.service.common.authentication.IJwtGenerator;
+import work.schwarzmaier.ecommercejava.service.common.interfaces.authentication.IJwtGenerator;
 import work.schwarzmaier.ecommercejava.infrastructor.service.DateTime;
 
 import java.util.UUID;
