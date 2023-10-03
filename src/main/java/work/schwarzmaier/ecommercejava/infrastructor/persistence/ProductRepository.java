@@ -9,25 +9,25 @@ import work.schwarzmaier.ecommercejava.service.product.Product;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-interface ProductCrudRepo extends CrudRepository<Product,Long>{}
 
+interface ProductCrudRepo extends CrudRepository<Product,Long>{}
 
 @Repository
 public class ProductRepository implements IProductRepository {
 
     @Autowired
-    private ProductCrudRepo crudRepo;
+    private ProductCrudRepo productCrudRepo;
 
     public List<Product> findAll(){
         return StreamSupport
-                .stream( crudRepo.findAll().spliterator(), false)
+                .stream( productCrudRepo.findAll().spliterator(), false)
                 .collect(Collectors.toList());
     }
 
     public void save(Product product){
-        crudRepo.save(product);
+        productCrudRepo.save(product);
     }
     public void save(Iterable<Product> products){
-        crudRepo.saveAll(products);
+        productCrudRepo.saveAll(products);
     }
 }

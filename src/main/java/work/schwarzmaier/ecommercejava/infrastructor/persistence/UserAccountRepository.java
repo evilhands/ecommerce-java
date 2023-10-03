@@ -8,7 +8,7 @@ import work.schwarzmaier.ecommercejava.service.user.UserAccount;
 
 import java.util.Optional;
 
-interface CrudRepo extends CrudRepository<UserAccount, Long> {
+interface UserCrudRepo extends CrudRepository<UserAccount, Long> {
     Optional<UserAccount> findByEmail(String email);
 }
 
@@ -17,15 +17,15 @@ public class UserAccountRepository implements IUserAccountRepository {
 
 
     @Autowired
-    private CrudRepo crudRepo;
+    private UserCrudRepo userCrudRepo;
 
     @Override
     public UserAccount add(UserAccount userAccount) {
-        return crudRepo.save(userAccount);
+        return userCrudRepo.save(userAccount);
     }
 
     @Override
     public Optional<UserAccount> findByEmail(String email) {
-        return crudRepo.findByEmail(email);
+        return userCrudRepo.findByEmail(email);
     }
 }
