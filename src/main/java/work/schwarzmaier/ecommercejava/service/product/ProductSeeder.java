@@ -3,6 +3,7 @@ package work.schwarzmaier.ecommercejava.service.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import work.schwarzmaier.ecommercejava.infrastructor.persistence.ProductRepository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

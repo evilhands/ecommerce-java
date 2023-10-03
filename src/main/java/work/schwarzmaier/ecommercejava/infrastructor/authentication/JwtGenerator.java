@@ -1,4 +1,4 @@
-package work.schwarzmaier.ecommercejava.service.common.authentication;
+package work.schwarzmaier.ecommercejava.infrastructor.authentication;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -6,12 +6,13 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import work.schwarzmaier.ecommercejava.service.common.service.DateTime;
+import work.schwarzmaier.ecommercejava.service.common.authentication.IJwtGenerator;
+import work.schwarzmaier.ecommercejava.infrastructor.service.DateTime;
 
 import java.util.UUID;
 
 @Component
-public class JwtGenerator {
+class JwtGenerator implements IJwtGenerator {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtGenerator.class);
 
@@ -21,6 +22,7 @@ public class JwtGenerator {
         this.jwtSettings = jwtSettings;
     }
 
+    @Override
     public String generate(Long id, String firstName, String lastName){
         String token = "";
         try {

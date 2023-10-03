@@ -1,21 +1,19 @@
-package work.schwarzmaier.ecommercejava.api.controller;
+package work.schwarzmaier.ecommercejava.api.authentication;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import work.schwarzmaier.ecommercejava.api.contract.authentication.RegisterRequest;
-import work.schwarzmaier.ecommercejava.api.contract.authentication.LoginRequest;
 import work.schwarzmaier.ecommercejava.service.authentication.AuthenticationResult;
-import work.schwarzmaier.ecommercejava.service.authentication.AuthenticationService;
+import work.schwarzmaier.ecommercejava.service.authentication.IAuthenticationService;
 
 @RestController
 @RequestMapping("auth")
-public class AuthenticationController {
+class AuthenticationController {
 
-    private final AuthenticationService authenticationService;
+    private final IAuthenticationService authenticationService;
 
-    public AuthenticationController(AuthenticationService authenticationService) {
+    public AuthenticationController(IAuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 

@@ -1,4 +1,4 @@
-package work.schwarzmaier.ecommercejava.service.common.service;
+package work.schwarzmaier.ecommercejava.infrastructor.service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

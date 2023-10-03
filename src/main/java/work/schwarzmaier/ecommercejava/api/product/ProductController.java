@@ -1,15 +1,17 @@
-package work.schwarzmaier.ecommercejava.service.product;
+package work.schwarzmaier.ecommercejava.api.product;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import work.schwarzmaier.ecommercejava.infrastructor.persistence.ProductRepository;
+import work.schwarzmaier.ecommercejava.service.product.Product;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-public class ProductController {
+class ProductController {
 
     private final ProductRepository productRepository;
 

@@ -1,4 +1,4 @@
-package work.schwarzmaier.ecommercejava.service.common.authentication;
+package work.schwarzmaier.ecommercejava.infrastructor.authentication;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
