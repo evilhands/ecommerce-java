@@ -18,12 +18,12 @@ class AuthenticationController {
     }
 
     @GetMapping("login")
-    public AuthenticationResult login(LoginRequest loginRequest){
-        return authenticationService.login(loginRequest.username(), loginRequest.password());
+    public AuthenticationResult login(@RequestBody LoginRequest loginRequest) throws Exception {
+        return authenticationService.login(loginRequest.email(), loginRequest.password());
     }
 
     @GetMapping("register")
-    public AuthenticationResult register(@RequestBody RegisterRequest registerRequest){
+    public AuthenticationResult register(@RequestBody RegisterRequest registerRequest) throws Exception {
         // valid password and email
         // not null field
         return authenticationService.register(registerRequest.firstName(), registerRequest.lastName(), registerRequest.email(), registerRequest.password());

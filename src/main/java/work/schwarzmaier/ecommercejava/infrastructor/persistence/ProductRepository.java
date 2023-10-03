@@ -9,15 +9,14 @@ import work.schwarzmaier.ecommercejava.service.product.Product;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+interface ProductCrudRepo extends CrudRepository<Product,Long>{}
 
 
 @Repository
 public class ProductRepository implements IProductRepository {
 
-    private interface CrudRepo extends CrudRepository<Product,Long>{};
-
     @Autowired
-    private CrudRepo crudRepo;
+    private ProductCrudRepo crudRepo;
 
     public List<Product> findAll(){
         return StreamSupport

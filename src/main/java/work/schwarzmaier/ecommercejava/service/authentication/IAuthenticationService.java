@@ -2,8 +2,8 @@ package work.schwarzmaier.ecommercejava.service.authentication;
 
 public interface IAuthenticationService {
 
-    public AuthenticationResult login(String username, String password);
+    AuthenticationResult login(String email, String password) throws Exception;
 
 
-    public AuthenticationResult register(String firstName, String lastName, String email, String password);
+    AuthenticationResult register(String firstName, String lastName, String email, String password) throws Exception;
 }

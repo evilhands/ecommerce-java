@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import work.schwarzmaier.ecommercejava.service.common.interfaces.authentication.IJwtGenerator;
 import work.schwarzmaier.ecommercejava.infrastructor.service.DateTime;
+import work.schwarzmaier.ecommercejava.service.user.UserAccount;
 
 import java.util.UUID;
 
@@ -23,16 +24,16 @@ class JwtGenerator implements IJwtGenerator {
     }
 
     @Override
-    public String generate(Long id, String firstName, String lastName){
+    public String generate(UserAccount userAccount){
         String token = "";
         try {
             Algorithm algorithm = Algorithm.HMAC384(jwtSettings.getSecret());
             token = JWT.create()
                     .withIssuer(jwtSettings.getIssuer())
-                    .withSubject(String.valueOf(id))
+                    .withSubject(String.valueOf(userAccount.getId()))
                     .withAudience(jwtSettings.getAudience())
-                    .withClaim("firstName",firstName)
-                    .withClaim("lastName",lastName)
+                    .withClaim("firstName",userAccount.getFirstName())
+                    .withClaim("lastName",userAccount.getLastName())
                     .withJWTId(UUID.randomUUID().toString())
                     .withExpiresAt(DateTime.UTCplusMin(jwtSettings.getExpiryMinutes()))
                     .sign(algorithm);
