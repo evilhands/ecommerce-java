@@ -1,5 +1,6 @@
 package work.schwarzmaier.ecommercejava.api.authentication;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,14 +19,14 @@ class AuthenticationController {
     }
 
     @GetMapping("login")
-    public AuthenticationResult login(@RequestBody LoginRequest loginRequest) throws Exception {
-        return authenticationService.login(loginRequest.email(), loginRequest.password());
+    public ResponseEntity<AuthenticationResult> login(@RequestBody LoginRequest loginRequest) throws Exception {
+        return ResponseEntity.ok(authenticationService.login(loginRequest.email(), loginRequest.password()));
     }
 
     @GetMapping("register")
-    public AuthenticationResult register(@RequestBody RegisterRequest registerRequest) throws Exception {
+    public ResponseEntity<AuthenticationResult> register(@RequestBody RegisterRequest registerRequest) throws Exception {
         // valid password and email
         // not null field
-        return authenticationService.register(registerRequest.firstName(), registerRequest.lastName(), registerRequest.email(), registerRequest.password());
+        return ResponseEntity.ok(authenticationService.register(registerRequest.firstName(), registerRequest.lastName(), registerRequest.email(), registerRequest.password()));
     }
 }
