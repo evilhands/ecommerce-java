@@ -1,6 +1,8 @@
 package work.schwarzmaier.ecommercejava.service.authentication;
 
 import org.springframework.stereotype.Service;
+import work.schwarzmaier.ecommercejava.service.common.exceptions.EMailAlreadyExitsException;
+import work.schwarzmaier.ecommercejava.service.common.exceptions.EMailNotFoundException;
 import work.schwarzmaier.ecommercejava.service.common.interfaces.authentication.IJwtGenerator;
 import work.schwarzmaier.ecommercejava.service.common.interfaces.persistence.IUserAccountRepository;
 import work.schwarzmaier.ecommercejava.service.user.UserAccount;
@@ -19,25 +21,25 @@ class AuthenticationService implements IAuthenticationService {
     }
 
     @Override
-    public AuthenticationResult login(String email, String password) throws Exception {
+    public AuthenticationResult login(String email, String password) throws EMailNotFoundException {
 
         Optional<UserAccount> userAccountOptional = userAccountRepository.findByEmail(email);
         if (userAccountOptional.isEmpty()) {
-            throw new Exception("Can not find E-Mail");
+            throw new EMailNotFoundException(email);
         }
 
         UserAccount userAccount = userAccountOptional.get();
         String token = jwtGenerator.generate(userAccount);
 
-        return new AuthenticationResult(userAccount, "was");
+        return new AuthenticationResult(userAccount, token);
     }
 
     @Override
-    public AuthenticationResult register(String firstName, String lastName, String email, String password) throws Exception {
+    public AuthenticationResult register(String firstName, String lastName, String email, String password) throws EMailAlreadyExitsException {
 
         Optional<UserAccount> userAccountOptional = userAccountRepository.findByEmail(email);
         if (userAccountOptional.isPresent()) {
-            throw new Exception("Given E-Mail Address is already used");
+            throw new EMailAlreadyExitsException(email);
         }
 
         UserAccount userAccount = userAccountRepository.add(new UserAccount(firstName, lastName, email, password));
