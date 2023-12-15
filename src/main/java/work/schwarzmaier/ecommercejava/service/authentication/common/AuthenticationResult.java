@@ -1,4 +1,4 @@
-package work.schwarzmaier.ecommercejava.service.authentication;
+package work.schwarzmaier.ecommercejava.service.authentication.common;
 
 import work.schwarzmaier.ecommercejava.service.user.UserAccount;
 
