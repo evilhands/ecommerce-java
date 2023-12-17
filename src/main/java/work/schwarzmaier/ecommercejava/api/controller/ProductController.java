@@ -1,4 +1,4 @@
-package work.schwarzmaier.ecommercejava.api.product;
+package work.schwarzmaier.ecommercejava.api.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,8 @@
-package work.schwarzmaier.ecommercejava.service.authentication.commands.register;
+package work.schwarzmaier.ecommercejava.service.authentication.queries.login;
 
 import org.springframework.stereotype.Service;
 import work.schwarzmaier.ecommercejava.service.authentication.common.AuthenticationResult;
-import work.schwarzmaier.ecommercejava.service.common.exceptions.EMailAlreadyExitsException;
+import work.schwarzmaier.ecommercejava.service.common.exceptions.EMailNotFoundException;
 import work.schwarzmaier.ecommercejava.service.common.interfaces.authentication.IJwtGenerator;
 import work.schwarzmaier.ecommercejava.service.common.interfaces.persistence.IUserAccountRepository;
 import work.schwarzmaier.ecommercejava.service.user.UserAccount;
@@ -10,27 +10,28 @@ import work.schwarzmaier.ecommercejava.service.user.UserAccount;
 import java.util.Optional;
 
 @Service
-class RegisterCommand implements IRegisterCommand {
+class LoginQueryService implements ILoginQueryService {
 
     private final IJwtGenerator jwtGenerator;
     private final IUserAccountRepository userAccountRepository;
 
-    public RegisterCommand(IJwtGenerator jwtGenerator, IUserAccountRepository userAccountRepository) {
+    public LoginQueryService(IJwtGenerator jwtGenerator, IUserAccountRepository userAccountRepository) {
         this.jwtGenerator = jwtGenerator;
         this.userAccountRepository = userAccountRepository;
     }
 
     @Override
-    public AuthenticationResult register(String firstName, String lastName, String email, String password) throws EMailAlreadyExitsException {
+    public AuthenticationResult login(String email, String password) throws EMailNotFoundException {
 
         Optional<UserAccount> userAccountOptional = userAccountRepository.findByEmail(email);
-        if (userAccountOptional.isPresent()) {
-            throw new EMailAlreadyExitsException(email);
+        if (userAccountOptional.isEmpty()) {
+            throw new EMailNotFoundException(email);
         }
 
-        UserAccount userAccount = userAccountRepository.add(new UserAccount(firstName, lastName, email, password));
-
+        UserAccount userAccount = userAccountOptional.get();
         String token = jwtGenerator.generate(userAccount);
+
         return new AuthenticationResult(userAccount, token);
     }
+
 }
